@@ -1,0 +1,17 @@
+body {
+  background-color: #0e1630;
+}
+
+.navbar {
+  background-color: #0e1630 !important;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #fff !important; /* Navbar text color */
+}
+
+.form-label{
+    color: white
+}
+
