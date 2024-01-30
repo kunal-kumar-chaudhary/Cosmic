@@ -1,6 +1,8 @@
 // in this file, we wll handle the routes for user related requests
 const { Router } = require("express");
 const User = require("../models/user");
+const multer = require("multer");
+const path = require("path");
 
 const router = Router();
 
@@ -21,10 +23,8 @@ router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
     const token = await User.matchPasswordAndGenerateToken(email, password);
-    console.log(token);
     return res.cookie("token", token).redirect("/");
   } catch (err) {
-    console.log("error", err);
     return res.render("signin", {
       error: "Signin invalid, please try again with correct credentials"
     });

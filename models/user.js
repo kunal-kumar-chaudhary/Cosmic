@@ -23,7 +23,7 @@ const userSchema = new Schema({
         type: String,
         default: "/images/default.jpg"
     }
-});
+}, {timestamps: true});
 
 // pre-save hook to hash the password before saving it to the database
 userSchema.pre("save", function(next){
