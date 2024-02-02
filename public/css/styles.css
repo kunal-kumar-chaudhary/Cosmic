@@ -7,7 +7,7 @@ body {
 }
 
 .navbar-nav .nav-link {
-  color: #fff !important; /* Navbar text color */
+  color: antiquewhite !important; /* Navbar text color */
   font-family: "Roboto", sans-serif;
   font-size: 19px;
 }
@@ -20,4 +20,8 @@ body {
 
 .form-label {
   color: white;
+}
+
+.navbar-brand:hover {
+  color: red !important;
 }

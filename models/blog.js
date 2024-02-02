@@ -1,4 +1,4 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const blogSchema = new Schema({
     title:{
@@ -16,8 +16,8 @@ const blogSchema = new Schema({
     createdBy:{
         type: Schema.Types.ObjectId,
         ref: "User",
-    }
-});
+    },
+}, {timestamps: true});
 
 const Blog = model("Blog", blogSchema);
 

@@ -1,7 +1,60 @@
-.container{
-    color: antiquewhite; 
+.container {
+  color: antiquewhite;
+  margin-top: 40px;
 }
 
-p{
-    font-family: 'Courier New', Courier, monospace;
+p {
+  font-family: "Merriweather", serif;
+  font-size: 20px;
+}
+
+.b{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.blog-body {
+  margin: 20px 40px;
+  text-align: justify;
+}
+
+.text{
+    line-height: 2rem;
+    text-align: justify;
+}
+
+.read{
+    padding-left: 0%;
+    margin-left: 0%;
+}
+
+
+h1{
+    font-family: "Merriweather", serif;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+h2{
+    font-family: "Merriweather", serif;  
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.rec{
+  margin: 20px 40px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: justify;
+  width: 300px;
+  height: 400px;
+}
+
+.comments{
+  text-align: center;
+}
+.card-body{
+  margin-bottom: 0px;
 }

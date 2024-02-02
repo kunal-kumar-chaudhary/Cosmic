@@ -7,6 +7,7 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 // importing routers
 const userRouter = require("./routes/user");
 const blogRouter = require("./routes/blog");
+const Blog = require("./models/blog")
 
 const port = 3000;
 
@@ -29,8 +30,13 @@ app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token")); // this middleware will check for the token in the cookie and attach the user to the request object if the token is valid
 
 // home page
-app.get("/", (req, res) => {
-  return res.render("home", {user: req.user});
+app.get("/", async (req, res) => {
+  const allBlogs = await Blog.find({}) // will return all the blogs
+  console.log(allBlogs.length);
+  return res.render("home", {
+    user: req.user,
+    blogs: allBlogs
+  });
 });
 
 // using the user router
