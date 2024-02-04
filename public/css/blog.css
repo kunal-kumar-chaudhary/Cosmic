@@ -18,6 +18,13 @@ p {
   text-align: justify;
 }
 
+.comments {
+  margin: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: justify;
+}
+
 .text{
     line-height: 2rem;
     text-align: justify;
@@ -43,18 +50,15 @@ h2{
     padding-top: 4px;
 }
 
-.rec{
+.blog-card{
   margin: 20px 40px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   margin-top: 0px;
   text-align: justify;
   width: 300px;
-  height: 400px;
+  height: 400px;;
 }
 
-.comments{
-  text-align: center;
-}
 .card-body{
   margin-bottom: 0px;
 }

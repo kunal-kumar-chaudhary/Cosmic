@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="kunal">
+    <%- include("./partials/nav") %> <% if(locals.user && ( blogs.length > 0)){ %>
+    <div class="container mt-5 row row-cols-4">
+      <% blogs.forEach((blog) => { %>
+      <div class="col">
+        <div class="card col">
+          <div
+            class="bg-image hover-overlay"
+            data-mdb-ripple-init
+            data-mdb-ripple-color="light"
+          >
+            <img
+              src="<%= blog.coverImageURL %>"
+              class="card-img-top"
+              height="250px"
+              width="200px"
+              alt="..."
+            />
+            <a href="#!">
+              <div
+                class="mask"
+                style="background-color: rgba(251, 251, 251, 0.15)"
+              ></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-text"><%= `${blog.body.slice(0,75)}...` %></p>
+            <a
+              href="/blog/<%= blog._id %>"
+              class="btn btn-primary"
+              data-mdb-ripple-init
+              >View
+            </a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+    <% }; %> <%- include("./partials/scripts") %>
+  </body>
+</html>

@@ -1,15 +1,24 @@
-body {
+.kumar {
   background-color: #0e1630;
 }
 
+.kunal{
+  position: relative;
+  background-image: url("/images/green.jpg");
+  background-repeat:repeat-y;
+  background-size:100% 100vh;
+}
+
 .navbar {
-  background-color: #0e1630 !important;
+  background-color: transparent !important;
 }
 
 .navbar-nav .nav-link {
   color: antiquewhite !important; /* Navbar text color */
   font-family: "Roboto", sans-serif;
   font-size: 19px;
+  margin: 0px;
+  padding: 0px;
 }
 .navbar-brand {
   font-family: "Roboto", sans-serif;
@@ -18,8 +27,23 @@ body {
   color: red;
 }
 
+.nav-item{
+  margin: 10px 10px;
+}
+
 .form-label {
   color: white;
+}
+
+.card-img-top{
+  height: 200px;
+  width: 250px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 .navbar-brand:hover {

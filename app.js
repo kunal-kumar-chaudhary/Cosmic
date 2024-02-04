@@ -7,7 +7,9 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 // importing routers
 const userRouter = require("./routes/user");
 const blogRouter = require("./routes/blog");
-const Blog = require("./models/blog")
+const Blog = require("./models/blog");
+const { default: axios } = require("axios");
+const {pre_process, refined_request, select_top_3} = require("./recommendation/utils");
 
 const port = 3000;
 
@@ -32,12 +34,27 @@ app.use(checkForAuthenticationCookie("token")); // this middleware will check fo
 // home page
 app.get("/", async (req, res) => {
   const allBlogs = await Blog.find({}) // will return all the blogs
-  console.log(allBlogs.length);
   return res.render("home", {
     user: req.user,
     blogs: allBlogs
   });
 });
+
+// creating search functionality
+app.post("/search", async (req, res)=>{
+  const { query } = req.body;
+  console.log(query);
+  const allBlogs = await Blog.find({}) // will return all the blogs
+  // try{
+  //   result = await axios({});
+  // }
+  // catch(err){
+  //   console.log(err.message);
+  // }
+  return res.render("searchResults", {user: req.user,
+  blogs: allBlogs});
+})
+
 
 // using the user router
 app.use("/user", userRouter);
