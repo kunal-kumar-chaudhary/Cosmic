@@ -3,13 +3,13 @@
   <head>
     <%- include("./partials/head") %>
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/allBlogs.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body class="kunal">
-    <%- include("./partials/nav") %> <% if(locals.user && ( blogs.length > 0)){ %>
+    <%- include("./partials/nav") %> <% if(user && blogs.length > 0){ %>
     <div class="container mt-5 row row-cols-4">
       <% blogs.forEach((blog) => { %>
       <div class="col">
@@ -47,6 +47,10 @@
       </div>
       <% }); %>
     </div>
-    <% }; %> <%- include("./partials/scripts") %>
+    <% } else if (blogs.length === 0) { %>
+    <div class="container mt-5">
+      <h1 class="text-center">No Matching Blogs Found</h1>
+    <% }; %>
+      <%- include("./partials/scripts") %>
   </body>
 </html>

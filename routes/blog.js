@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 
   // fetching the comments as well for this blog
   const comments = await Comment.find({blogId: req.params.id}).populate("createdBy");
-  console.log(comments);
+
   // grabbing all the blogs from the database
   // this will return us the array of documents
   const allBlogs = await Blog.find({});
@@ -44,12 +44,16 @@ router.get("/:id", async (req, res) => {
   let recommendedBlogs;
   let top3_converted;
   try {
-    const result = await refined_request(blog, allBlogs);
-    top3 = await select_top_3(result);
+    console.log("point1")
+    const results = await refined_request(blog, allBlogs);
+    console.log("point2")
+    top3 = await select_top_3(1,4,results);
+    console.log("point3")
     top3_converted = top3.map((item)=> new mongoose.Types.ObjectId(item))
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
+  console.log(top3_converted);
   // now using the top_3 id's to get the blogs
   // with the highest similiarity
   try {
@@ -59,7 +63,7 @@ router.get("/:id", async (req, res) => {
   }
   // reverse the array to get the blogs in the order of highest similiarity
   recommendedBlogs = recommendedBlogs.reverse();
-
+  console.log(recommendedBlogs[0].title);
   // console.log(blog.createdBy);
   return res.render("blog", {
     user: req.user,

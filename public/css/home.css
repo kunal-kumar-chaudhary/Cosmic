@@ -1,26 +1,28 @@
-.row{
-    margin: 20px 60px;
-    
-}
-.card{
-    height: 450px;
-    width: 300px;
-    background-color: black;
-    margin-top: 20px;
-    margin-bottom: 20px;
-   
-}
-
-
-.card-title{
-    text-align: justify;
-    height: 25px;
+h1, p{
     color: white;
 }
+.aboutUs{
+    background-color: #0e1630;
+    padding: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
-.card-text{
-    text-align: justify;
-    height: 70px;
-    padding-bottom: 10px;
+.myImage{
+        background-color: #0e1630;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height:"300px";
+        width:"300px";
+}
+
+.kunal{
+    position: relative;
+    background-image: url("/images/cosmos.jpg");
+    background-repeat:repeat-y;
+    background-size:100% 100vh;
+  }
+
+body{
     color: white;
 }

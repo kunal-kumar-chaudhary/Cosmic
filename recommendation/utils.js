@@ -61,21 +61,21 @@ const refined_request = async (currentBlog, allBlogs) => {
 
 // sorting the similiarties values based upon similiarity values in descending order
 
-const select_top_3 = async (results) => {
-    console.log("results",results);
-  const sortedSimiliarities = results.similarities.sort((a, b) => {
+// default start and end parameter are 1 and 4 respectively
+const select_top_3 = async (start = 1, end = 4, results) => {
+  console.log(results);
+  let sortedSimiliarities = results.similarities.sort((a, b) => {
     return b.similarity - a.similarity;
   });
   console.log("sorted similiarities",sortedSimiliarities);
 
   // extracting the top 3 id's with highest similiarity values
-  const top3 = sortedSimiliarities.slice(1, 4).map((item) => item.id);
-
+  let top3 = sortedSimiliarities.slice(start, end).map((item) => item.id);
   return top3;
 };
 
 module.exports = {
-    pre_process,
+  pre_process,
   refined_request,
   select_top_3,
 };

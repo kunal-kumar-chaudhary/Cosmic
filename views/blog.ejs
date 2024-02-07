@@ -38,7 +38,7 @@
 
             <!-- if the user is authenticated, he will be able to add the comments -->
             <% if (locals.user) {%>
-            <form action="/blog/comment/<%= blog._id %>" method="post" onsubmit="return false">
+            <form action="/blog/comment/<%= blog._id %>" method="post">
               <div class="mb-3">
                 <textarea
                   name="content"

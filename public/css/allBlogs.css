@@ -1,0 +1,26 @@
+.row{
+    margin: 20px 60px;
+    
+}
+.card{
+    height: 450px;
+    width: 300px;
+    background-color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+   
+}
+
+
+.card-title{
+    text-align: justify;
+    height: 25px;
+    color: white;
+}
+
+.card-text{
+    text-align: justify;
+    height: 70px;
+    padding-bottom: 10px;
+    color: white;
+}
