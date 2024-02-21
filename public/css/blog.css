@@ -62,3 +62,12 @@ h2{
 .card-body{
   margin-bottom: 0px;
 }
+
+
+.blog_background {
+  position: relative;
+  background-image: url("/images/bgTexturn2.png");
+  background-repeat: repeat-y;
+  background-size: 100% 100vh;
+  background-color: rgba(67, 34, 111, 0.9);
+}

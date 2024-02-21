@@ -173,9 +173,9 @@
                 class="d-flex justify-content-center align-items-center h-100"
               >
                 <div class="text-white text-center" data-mdb-theme="dark">
-                  <h1 class="mb-3">Learn Bootstrap 5 with MDB</h1>
+                  <h1 class="mb-3">Learning through the vision..</h1>
                   <h5 class="mb-4">
-                    Best & free guide of responsive web design
+                    Best & free learning platform for everybody!
                   </h5>
                   <a
                     class="btn btn-outline-light btn-lg m-2"
@@ -329,7 +329,7 @@
                   data-mdb-ripple-color="light"
                 >
                   <img
-                    src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
+                    src="<%= top3[0].coverImageURL %>"
                     class="img-fluid"
                   />
                   <a href="#!">
@@ -340,10 +340,9 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title"><%= top3[0].title %></h5>
                   <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    <%= `${top3[0].body.slice(0,20)}...` %>
                   </p>
                   <a href="#!" class="btn btn-primary" data-mdb-ripple-init
                     >Button</a
@@ -360,7 +359,7 @@
                   data-mdb-ripple-color="light"
                 >
                   <img
-                    src="https://mdbootstrap.com/img/new/standard/nature/023.jpg"
+                    src="<%= top3[1].coverImageURL %>"
                     class="img-fluid"
                   />
                   <a href="#!">
@@ -371,10 +370,9 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title"><%= top3[1].title %></h5>
                   <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    <%= `${top3[1].body.slice(0,20)}...` %>
                   </p>
                   <a href="#!" class="btn btn-primary" data-mdb-ripple-init
                     >Button</a
@@ -391,7 +389,7 @@
                   data-mdb-ripple-color="light"
                 >
                   <img
-                    src="https://mdbootstrap.com/img/new/standard/nature/111.jpg"
+                    src="<%= top3[2].coverImageURL %>"
                     class="img-fluid"
                   />
                   <a href="#!">
@@ -402,10 +400,9 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title"><%= top3[2].title %></h5>
                   <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    <%= `${top3[2].body.slice(0,20)}...` %>
                   </p>
                   <a href="#!" class="btn btn-primary" data-mdb-ripple-init
                     >Button</a
@@ -533,7 +530,7 @@
     <!--Main layout-->
 
     <!--Footer-->
-    <footer class="bg-light text-lg-start">
+    <footer class="bg-light text-lg-start bg">
       <div class="py-4 text-center">
         <a
           role="button"

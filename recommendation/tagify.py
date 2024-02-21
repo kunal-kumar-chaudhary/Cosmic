@@ -4,6 +4,9 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from nltk.chunk import ne_chunk
 import spacy
+from pydantic import BaseModel
+from typing import List
+from fastapi import APIRouter
 # from sklearn.feature_extraction.text import TfidfVectorizer
 # from sklearn.metrics.pairwise import cosine_similarity
 
@@ -102,7 +105,9 @@ async def get_cosine_similarity(blog1, blog2):
     X_set = {w.lower() for w in X_list if not w in sw}  
     Y_set = {w.lower() for w in Y_list if not w in sw} 
     
-    # form a set containing keywords of both strings  
+    # form a set containing keywords of both strings.
+    # Create binary vectors L1 and L2 representing the presence or absence of each word 
+    # in the combined set of unique words from both Blogs  
     rvector = X_set.union(Y_set)  
     for w in rvector: 
         if w in X_set: l1.append(1) # create a vector 
@@ -110,8 +115,64 @@ async def get_cosine_similarity(blog1, blog2):
         if w in Y_set: l2.append(1) 
         else: l2.append(0) 
     c = 0
-    
+    # print(l1)
+    # print(l2)
     # cosine formula  
     for i in range(len(rvector)): 
             c+= l1[i]*l2[i] 
-    return c / float((sum(l1)*sum(l2))**0.5) 
+    return c / float((sum(l1)*sum(l2))**0.5)
+
+
+# This is the object that is expected in the post request
+# NOTE: the blogs may be multi-line, and it may contain newlines and double quotes that can potentially interfere with JSON parsing. 
+# JSON should be a single-line string, and special characters need to be properly escaped.
+class CreatedBlog(BaseModel):
+    id: str
+    content: str
+
+class Blog(BaseModel):
+    created_blog: CreatedBlog
+    blog_list: List[CreatedBlog]
+
+# Response Body
+class Similarity(BaseModel):
+    id : str
+    # content: str
+    similarity:float
+
+class Resp(BaseModel):
+    id: str
+    similarities: List[Similarity]
+
+router = APIRouter()
+
+@router.post("/")
+async def create_tags(input: Blog):
+    # username = input.userName
+    created_blog_data = input.created_blog
+    blog_list = input.blog_list
+
+    #to keep tags unique, use sets and reconvert to list
+    # blog1_tags = await tagify.extract_tags(blog1_content)
+    # blog2_tags = await tagify.extract_tags(blog2_content)
+    # tags = list(set(tags))
+
+    # print( "Tag1:" , set(blog1_tags))
+    # print( "Tag2:" , set(blog2_tags))
+    
+    # jaccard_similarity = await tagify.similarity(blog1_tags, blog2_tags)
+    # cosine_similarity1 = await tagify.get_cosine_similarity(blog1_content, blog2_content)
+    resp = Resp(id=created_blog_data.id, similarities=[])
+    for blog in blog_list:
+        cosine_similarity = await get_cosine_similarity(created_blog_data.content, blog.content)
+        
+        similarity = Similarity(id=blog.id, similarity=cosine_similarity)
+
+        resp.id = created_blog_data.id
+        resp.similarities.append(similarity)
+    
+    # print(jaccard_similarity)
+    # print(cosine_similarity1)
+    print(cosine_similarity)
+    
+    return resp

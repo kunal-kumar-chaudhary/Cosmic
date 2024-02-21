@@ -17,6 +17,10 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    visited:{
+        type: Number,
+        default: 0,
+    },
 }, {timestamps: true});
 
 const Blog = model("Blog", blogSchema);

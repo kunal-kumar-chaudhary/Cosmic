@@ -49,9 +49,15 @@ app.get("/home", async (req, res) => {
 
 app.get("/", async (req, res) => {
   const allBlogs = await Blog.find({}); // will return all the blogs
+  // we need to select top3 blogs based on visitors
+  const top3 = allBlogs.sort((a,b)=>{
+    return b.visited - a.visited;
+  })
+  console.log("top3 blogs",top3);
   return res.render("home",{
     user: req.user,
     blogs: allBlogs,
+    top3: top3.slice(0,3)
   });
 });
 

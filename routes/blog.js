@@ -7,6 +7,7 @@ const router = Router();
 const multer = require("multer");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
+const { default: axios } = require("axios");
 
 // creating a storage using multer
 const storage = multer.diskStorage({
@@ -28,14 +29,71 @@ router.get("/addNew", (req, res) => {
   });
 });
 
-router.get("/:id", async (req, res) => {
+// will handle both get and post request
+
+router.all("/:id", async (req, res) => {
   // grabbing the id from the request params
   // below we are grabbing the blog coressponding to the blog id
   // and populating the createdBy field with the user object
-  const blog = await Blog.findById(req.params.id).populate("createdBy");
-
+  let blog = await Blog.findById(req.params.id).populate("createdBy");
+  blog.visited++; // incrementing the visited field by 1
+  await blog.save();
+  const filtered_comments = [];
   // fetching the comments as well for this blog
-  const comments = await Comment.find({blogId: req.params.id}).populate("createdBy");
+  let comments = await Comment.find({ blogId: req.params.id }).populate(
+    "createdBy"
+  );
+
+  // getting username and the comment corresponding to the user
+  comments.forEach((comment) => {
+    filtered_comments.push({
+      id: comment._id,
+      comment: comment.body,
+    });
+  });
+  const request_body = {
+    comments_list: filtered_comments,
+  };
+  // making request to the server usings axios
+  // to get the sentiment analysis of the comments
+  let response;
+  try {
+    response = await axios.post(
+      "http://127.0.0.1:8000/sentiment/",
+      request_body
+    );
+  } catch (error) {
+    console.error("Error making request:", error.code);
+    throw error;
+  }
+  let sentiment = response.data;
+  let ids;
+  const selectedValue = req.query.selectedValue;
+  if (selectedValue) {
+    `
+    what we are doing:-
+
+    we are iterating over every item in the sentiment object
+    and then we are iterating over the scores array
+    and then we are sorting the scores in descending order
+    and then we are grabbing the highest value from the scores array
+    and then we are checking if the selected value is equal to the highest value
+    and then we are pushing the id to the names array
+    and then we are querying the database to get the comments corresponding to the names array
+    `;
+    ids = [];
+
+    sentiment.sentiment_list.forEach((item) => {
+      const { neg, neu, pos, compound } = item.analysis.scores;
+      const scores = [neg, neu, pos];
+      scores.sort((a, b) => b - a);
+      let highestValue = scores[0];
+      if (item.analysis.scores[selectedValue] === highestValue) {
+        ids.push(item.id);
+      }
+    });
+    comments = await Comment.find({ "_id": { $in: ids } }).populate("createdBy");
+  }
 
   // grabbing all the blogs from the database
   // this will return us the array of documents
@@ -44,16 +102,12 @@ router.get("/:id", async (req, res) => {
   let recommendedBlogs;
   let top3_converted;
   try {
-    console.log("point1")
     const results = await refined_request(blog, allBlogs);
-    console.log("point2")
-    top3 = await select_top_3(1,4,results);
-    console.log("point3")
-    top3_converted = top3.map((item)=> new mongoose.Types.ObjectId(item))
+    top3 = await select_top_3(1, 4, results);
+    top3_converted = top3.map((item) => new mongoose.Types.ObjectId(item));
   } catch (err) {
     console.log(err);
   }
-  console.log(top3_converted);
   // now using the top_3 id's to get the blogs
   // with the highest similiarity
   try {
@@ -61,10 +115,19 @@ router.get("/:id", async (req, res) => {
   } catch (err) {
     console.log(err.message);
   }
-  // reverse the array to get the blogs in the order of highest similiarity
-  recommendedBlogs = recommendedBlogs.reverse();
-  console.log(recommendedBlogs[0].title);
-  // console.log(blog.createdBy);
+
+  // sorting the recommended blogs in the order of highest similiarity as we have the id's
+  // we have to do this as there is no inherent function in mongose to sort the blogs.
+  let sortedRecommendedBlogs = [];
+  top3.forEach((id) => {
+    recommendedBlogs.forEach((blog) => {
+      if (blog._id.toString() === id.toString()) {
+        sortedRecommendedBlogs.push(blog);
+      }
+    });
+  });
+  recommendedBlogs = sortedRecommendedBlogs;
+
   return res.render("blog", {
     user: req.user,
     blog,
@@ -83,22 +146,18 @@ router.post("/", uploads.single("coverImage"), async (req, res) => {
     coverImageURL: `/uploads/${req.file.filename}`,
     createdBy: req.user.id,
   });
-  /* here we will implement cosine similiarity with the blog title
-    and will recommend the user with the blogs with the highest cosine similiarity
-    */
-
   // dynamic routing for the blog page
   return res.redirect(`/blog/${blog._id}`);
 });
 
-router.post("/comment/:blogId", async (req, res)=>{
+// route to add a comment to the blog
+router.post("/comment/:blogId", async (req, res) => {
   await Comment.create({
     body: req.body.content,
     createdBy: req.user.id,
     blogId: req.params.blogId,
   });
   return res.redirect(`/blog/${req.params.blogId}`);
-})
-
+});
 
 module.exports = router;

@@ -43,6 +43,7 @@ const refined_request = async (currentBlog, allBlogs) => {
     },
     blog_list: bodies,
   };
+  // console.log("ids", request_body.blog_list.map((item) => item.id));
   // sending the request to the server to get the similiarities between the blogs
   try {
     const response = await axios.post(
@@ -63,12 +64,9 @@ const refined_request = async (currentBlog, allBlogs) => {
 
 // default start and end parameter are 1 and 4 respectively
 const select_top_3 = async (start = 1, end = 4, results) => {
-  console.log(results);
   let sortedSimiliarities = results.similarities.sort((a, b) => {
     return b.similarity - a.similarity;
   });
-  console.log("sorted similiarities",sortedSimiliarities);
-
   // extracting the top 3 id's with highest similiarity values
   let top3 = sortedSimiliarities.slice(start, end).map((item) => item.id);
   return top3;

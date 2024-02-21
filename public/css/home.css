@@ -1,28 +1,44 @@
-h1, p{
-    color: white;
+h1{
+    color:white;
 }
-.aboutUs{
-    background-color: #0e1630;
-    padding: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.myImage{
-        background-color: #0e1630;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        height:"300px";
-        width:"300px";
+.aboutUs {
+  background-color: #0e1630;
+  padding: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.kunal{
+.kunal {
+  position: relative;
+  background-image: url("/images/cosmos.jpg");
+  background-repeat: repeat-y;
+  background-size: 100% 100vh;
+}
+
+.bg{
     position: relative;
-    background-image: url("/images/cosmos.jpg");
-    background-repeat:repeat-y;
-    background-size:100% 100vh;
-  }
+  background-image: url("/images/cosmos.jpg");
+  background-repeat: repeat-y;
+  background-size: 100% 100vh;
+}
 
-body{
-    color: white;
+body {
+  color: white;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .bg-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.card .bg-image img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
 }
