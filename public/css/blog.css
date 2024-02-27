@@ -8,9 +8,9 @@ p {
   font-size: 20px;
 }
 
-.b{
-    padding-left: 40px;
-    padding-right: 40px;
+.b {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .blog-body {
@@ -25,44 +25,41 @@ p {
   text-align: justify;
 }
 
-.text{
-    line-height: 2rem;
-    text-align: justify;
+.text {
+  line-height: 2rem;
+  text-align: justify;
 }
 
-.read{
-    padding-left: 0%;
-    margin-left: 0%;
+.read {
+  padding-left: 0%;
+  margin-left: 0%;
 }
 
-
-h1{
-    font-family: "Merriweather", serif;
-    font-size: 40px;
-    font-weight: bold;
-
+h1 {
+  font-family: "IM Fell DW Pica";
+  font-size: 40px;
+  font-weight: bold;
 }
-h2{
-    font-family: "Merriweather", serif;  
-    font-weight: bold;
-    margin-top: 30px;
-    text-align: center;
-    padding-top: 4px;
+h2 {
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 4px;
 }
 
-.blog-card{
+.blog-card {
   margin: 20px 40px;
   margin-bottom: 10px;
   margin-top: 0px;
   text-align: justify;
   width: 300px;
-  height: 400px;;
+  height: 400px;
 }
 
-.card-body{
+.card-body {
   margin-bottom: 0px;
 }
-
 
 .blog_background {
   position: relative;

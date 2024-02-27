@@ -1,5 +1,5 @@
-h1{
-    color:white;
+h1 {
+  color: white;
 }
 .aboutUs {
   background-color: #0e1630;
@@ -10,13 +10,6 @@ h1{
 
 .kunal {
   position: relative;
-  background-image: url("/images/cosmos.jpg");
-  background-repeat: repeat-y;
-  background-size: 100% 100vh;
-}
-
-.bg{
-    position: relative;
   background-image: url("/images/cosmos.jpg");
   background-repeat: repeat-y;
   background-size: 100% 100vh;
