@@ -16,22 +16,23 @@ Welcome to our blogging application GitHub repository! This project is built usi
 
 - **Text Summarization**: The application includes text summarization functionality using the Hugging Face library, enabling users to generate concise summaries of long texts.
 
-## Directory Structure
+# Project Directory Structure
 
-The repository is organized as follows:
-
+```
 root/
 │
-├── backend/ # Backend codebase
-│ ├── app/ # Express application files
-│ ├── routes/ # Route handlers for different API endpoints
-│ ├── controllers/ # Controllers for handling business logic
-│ ├── services/ # Services for handling text summarization and recommendation
-│ └── models/ # MongoDB schema definitions
+├── backend/                # Backend codebase
+│   ├── app/                # Express application files
+│   ├── routes/             # Route handlers for different API endpoints
+│   ├── controllers/        # Controllers for handling business logic
+│   ├── services/           # Services for handling text summarization and recommendation
+│   └── models/             # MongoDB schema definitions
 │
-├── frontend/ # Frontend codebase (if applicable)
+├── frontend/               # Frontend codebase (if applicable)
 │
-└── python-scripts/ # Python scripts for auxiliary tasks
+└── python-scripts/         # Python scripts for auxiliary tasks
+```
+
 
 
 ## Getting Started
