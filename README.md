@@ -1,5 +1,3 @@
-Trello link for tracking whole progress of the development - `https://trello.com/invite/b/TpNoBP9s/ATTI93c309cac37c091c1114bcc2e2efeb7536EA49CD/cloud-web-software-engineering`
-
 # Blogging Application with Recommendation System and Text Summarization
 
 Welcome to our blogging application GitHub repository! This project is built using Node.js and Express for the backend, along with additional features such as user authentication, blog recommendation based on cosine similarity, text summarization using Hugging Face, and a RESTful API developed using FASTAPI. MongoDB with Mongoose is used for all CRUD operations related to the database.
@@ -22,6 +20,19 @@ Welcome to our blogging application GitHub repository! This project is built usi
 
 The repository is organized as follows:
 
+root/
+│
+├── backend/ # Backend codebase
+│ ├── app/ # Express application files
+│ ├── routes/ # Route handlers for different API endpoints
+│ ├── controllers/ # Controllers for handling business logic
+│ ├── services/ # Services for handling text summarization and recommendation
+│ └── models/ # MongoDB schema definitions
+│
+├── frontend/ # Frontend codebase (if applicable)
+│
+└── python-scripts/ # Python scripts for auxiliary tasks
+
 
 ## Getting Started
 
@@ -29,6 +40,9 @@ To run the application locally, follow these steps:
 
 1. Clone the repository:
 
+git clone https://github.com/your-username/blogging-application.git
+
+cd blogging-application
 
 2. Install dependencies:
 
@@ -49,6 +63,8 @@ npm install
 ## Contributing
 
 We welcome contributions from the community! If you'd like to contribute to the project, please fork the repository, make your changes, and submit a pull request. Be sure to follow the contribution guidelines outlined in the repository.
+
+Trello link for tracking whole progress of the development - `https://trello.com/invite/b/TpNoBP9s/ATTI93c309cac37c091c1114bcc2e2efeb7536EA49CD/cloud-web-software-engineering`
 
 ## License
 
