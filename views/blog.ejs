@@ -67,13 +67,34 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li>
-                    <button class="dropdown-item" type="submit" name="selectedValue" value="pos">Positive</button>
+                    <button
+                      class="dropdown-item"
+                      type="submit"
+                      name="selectedValue"
+                      value="pos"
+                    >
+                      Positive
+                    </button>
                   </li>
                   <li>
-                    <button class="dropdown-item" type="submit" name="selectedValue" value="neg">Negative</button>
+                    <button
+                      class="dropdown-item"
+                      type="submit"
+                      name="selectedValue"
+                      value="neg"
+                    >
+                      Negative
+                    </button>
                   </li>
                   <li>
-                    <button class="dropdown-item" type="submit" name="selectedValue" value="neu">Neutral</button>
+                    <button
+                      class="dropdown-item"
+                      type="submit"
+                      name="selectedValue"
+                      value="neu"
+                    >
+                      Neutral
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -136,6 +157,18 @@
               </div>
               <% }); %>
             </div>
+          </div>
+          <div class="container text-center">
+            <form action="/blog/<%= blog._id %>" method="post">
+              <button type="submit" name="summary_button" value="clicked" class="btn btn-info">
+                Summarize Article
+              </button>
+              <% if (summary) {%>
+              <div class="mt-3 summary text-center">
+                <p><%= summary %></p>
+              </div>
+                <% } %>
+            </form>
           </div>
         </div>
         <% } %>

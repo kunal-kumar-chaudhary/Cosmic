@@ -43,7 +43,18 @@ router.all("/:id", async (req, res) => {
   let comments = await Comment.find({ blogId: req.params.id }).populate(
     "createdBy"
   );
-
+  let summary;
+  let request_blog = {
+    "text": blog.body,
+  };
+  // getting summary of the blog
+  if (req.body.summary_button === 'clicked'){
+  summary = await axios.post(
+    "http://127.0.0.1:8000/summary/",
+    request_blog
+  );
+  summary = summary.data.message[0].summary_text
+  }
   // getting username and the comment corresponding to the user
   comments.forEach((comment) => {
     filtered_comments.push({
@@ -92,7 +103,7 @@ router.all("/:id", async (req, res) => {
         ids.push(item.id);
       }
     });
-    comments = await Comment.find({ "_id": { $in: ids } }).populate("createdBy");
+    comments = await Comment.find({ _id: { $in: ids } }).populate("createdBy");
   }
 
   // grabbing all the blogs from the database
@@ -133,6 +144,7 @@ router.all("/:id", async (req, res) => {
     blog,
     recommendedBlogs,
     comments,
+    summary,
   });
 });
 
