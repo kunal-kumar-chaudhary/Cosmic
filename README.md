@@ -1,3 +1,5 @@
+Trello link for tracking whole progress of the development - `https://trello.com/invite/b/TpNoBP9s/ATTI93c309cac37c091c1114bcc2e2efeb7536EA49CD/cloud-web-software-engineering`
+
 # Blogging Application with Recommendation System and Text Summarization
 
 Welcome to our blogging application GitHub repository! This project is built using Node.js and Express for the backend, along with additional features such as user authentication, blog recommendation based on cosine similarity, text summarization using Hugging Face, and a RESTful API developed using FASTAPI. MongoDB with Mongoose is used for all CRUD operations related to the database.
